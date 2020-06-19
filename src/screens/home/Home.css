@@ -39,7 +39,10 @@
 .released-movie-grid-item {
     margin: 15px;
 }
-
+.applyBtn{
+    width: 100%;
+    
+}
 @media (max-width: 992px) {
     .flex-container {
         flex-direction: column;

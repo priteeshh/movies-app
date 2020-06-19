@@ -4,6 +4,7 @@ import Header from '../../common/header/Header.js'
 import { withStyles } from '@material-ui/core/styles';
 import moviesData from '../../common/movieData.js';
 import genres from '../../common/genres.js'
+import artists from '../../common/artists.js'
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -16,6 +17,8 @@ import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Checkbox, ListItemText } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({
@@ -52,7 +55,8 @@ class Home extends Component {
         super();
         this.state = {
             movieName: '',
-            genres: []
+            genres: [],
+            artists: []
         }
     }
     filterChangeHandler = (e) => {
@@ -61,6 +65,9 @@ class Home extends Component {
     }
     genreChangeHandler = (e) => {
         this.setState({ genres: e.target.value });
+    }
+    artistChangeHandler = (e) => {
+        this.setState({ artists: e.target.value });
     }
     render() {
         const { classes } = this.props;
@@ -120,8 +127,45 @@ class Home extends Component {
                                             </MenuItem>
                                         ))}
                                     </Select>
-                                    
                                 </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel htmlFor="artists">Artists</InputLabel>
+                                    <Select
+                                        multiple
+                                        input={<Input id="artists" />}
+                                        renderValue={selected => selected.join(',')}
+                                        value={this.state.artists}
+                                        onChange={this.artistChangeHandler}
+                                    >
+                                        <MenuItem value="0">None</MenuItem>
+                                        {artists.map(artist => (
+                                            <MenuItem key={artist.id} value={artist.first_name}>
+                                                <Checkbox checked={this.state.artists.indexOf(artist.first_name) > -1} />
+                                                <ListItemText primary={artist.first_name} />
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <TextField 
+                                        id="releaseDateStart"
+                                        label="Relaease date Start"
+                                        type="date"
+                                        default = ""
+                                        InputLabelProps={{shrink: true}}
+                                        />
+                                </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <TextField 
+                                        id="releaseDateEnd"
+                                        label="Relaease date End"
+                                        type="date"
+                                        default = ""
+                                        InputLabelProps={{shrink: true}}
+                                        />
+                                </FormControl><br/><br/>
+                                <Button variant="contained" color="primary" className="applyBtn">Apply</Button>
+
                             </CardContent>
                         </Card>
                     </div>

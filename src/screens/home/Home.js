@@ -101,10 +101,10 @@ class Home extends Component {
                                     <Input id="movieName" onChange={this.filterChangeHandler} />
                                 </FormControl>
                                 <FormControl className={classes.formControl}>
-                                    <InputLabel htmlFor="select-multiple-checkboxes">Genere</InputLabel>
+                                    <InputLabel htmlFor="select-multiple-checkbox">Genere</InputLabel>
                                     <Select
                                         multiple
-                                        input={<Input id="select-multiple-checkboxes" />}
+                                        input={<Input id="select-multiple-checkbox" />}
                                         renderValue={selected => selected.join(',')}
                                         value={this.state.generes}
                                         onChange={this.filterChangeHandler}

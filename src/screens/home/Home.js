@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css';
 import Header from '../../common/header/Header.js'
-import { withStyles, createGenerateClassName } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import moviesData from '../../common/movieData.js';
 import genres from '../../common/genres.js'
 import GridList from '@material-ui/core/GridList';
@@ -14,7 +14,6 @@ import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Checkbox, ListItemText } from '@material-ui/core';
 
@@ -57,7 +56,11 @@ class Home extends Component {
         }
     }
     filterChangeHandler = (e) => {
-        console.log(e.target.value);
+        this.setState({ movieName: e.target.value });
+
+    }
+    genreChangeHandler = (e) => {
+        this.setState({ genres: e.target.value });
     }
     render() {
         const { classes } = this.props;
@@ -106,8 +109,8 @@ class Home extends Component {
                                         multiple
                                         input={<Input id="select-multiple-checkbox" />}
                                         renderValue={selected => selected.join(',')}
-                                        value={this.state.generes}
-                                        onChange={this.filterChangeHandler}
+                                        value={this.state.genres}
+                                        onChange={this.genreChangeHandler}
                                     >
                                         <MenuItem value="0">None</MenuItem>
                                         {genres.map(genre => (

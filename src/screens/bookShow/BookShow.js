@@ -8,6 +8,7 @@ import language from '../../common/language';
 import location from '../../common/location';
 import showDate from '../../common/showDate';
 import showTime from '../../common/showTime';
+import Confirmation from '../confirmation/Confirmation';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -65,6 +66,8 @@ class BookShow extends Component {
         this.state.showDate === '' ? this.setState({ showDateRequired: 'displayFormHelperText' }) : this.setState({ showDateRequired: 'displayNone' })
         this.state.showTime === '' ? this.setState({ showTimeRequired: 'displayFormHelperText' }) : this.setState({ showTimeRequired: 'displayNone' })
         this.state.tickets === 0 ? this.setState({ ticketsRequired: 'displayFormHelperText' }) : this.setState({ ticketsRequired: 'displayNone' })
+
+        ReactDOM.render(<Confirmation bookingSummary={this.state} />, document.getElementById('root'));
 
     }
     render() {

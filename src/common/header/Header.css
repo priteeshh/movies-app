@@ -28,3 +28,7 @@
  .displayFormHelperText{
     display: '';
  }
+ .bookshow-button {
+    float: right;
+    margin-right: 8px;
+}

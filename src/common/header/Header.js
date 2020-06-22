@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './Header.css';
 import Button from '@material-ui/core/Button';
 import logo from '../../assets/logo.svg';
@@ -10,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import BookShow from '../../screens/bookShow/BookShow.js';
 
 import PropTypes from 'prop-types';
 
@@ -124,6 +126,10 @@ class Header extends Component {
         this.state.contactNumber === '' ? this.setState({ contactNumberRequired: 'displayFormHelperText' }) : this.setState({ contactNumberRequired: 'displayNone' })
 
     }
+    bookShowHandler = () => {
+        console.log("Hello");
+        ReactDOM.render(<BookShow />, document.getElementById('root'))
+    }
     render() {
         return (
             <div className="header">
@@ -132,6 +138,12 @@ class Header extends Component {
                     <div className="login-button">
                         <Button variant="contained" color="default" onClick={this.modalHandler}>Login</Button>
                     </div>
+                    {this.props.bookShowbtn === "true" ?
+                    <div className="bookshow-button">
+                        <Button variant="contained" color="primary" onClick={this.bookShowHandler}>Book Show</Button>
+                    </div> : ""
+                    }
+                    
                 </header>
                 <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen} contentLabel="Login"
                     onRequestClose={this.closeModalHandler} style={customStyles}>
